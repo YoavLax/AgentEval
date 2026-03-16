@@ -4,8 +4,8 @@
 
 # AgentEval
 
-**Cross-agent skill quality gate for `SKILL.md` files.**<br/>
-Validates against the [agentskills.io specification](https://agentskills.io/specification), scores description discoverability, checks file references, and warns about cross-platform compatibility.
+**Cross-agent quality gate for `SKILL.md` and `agent.md` files.**<br/>
+Spec validation, description scoring, reference checks, and cross-platform compatibility warnings — all in one tool. Based on the [agentskills.io specification](https://agentskills.io/specification).
 
 <br/>
 
@@ -19,14 +19,14 @@ Validates against the [agentskills.io specification](https://agentskills.io/spec
 
 ## What It Does
 
-`AgentEval` catches problems in your `SKILL.md` files before they hit production across Claude Code, VS Code/Copilot, OpenAI Codex, Cursor, and other agents:
+`AgentEval` catches problems in your `SKILL.md` and `agent.md` files before they reach production across Claude Code, VS Code/Copilot, OpenAI Codex, Cursor, and other agents:
 
-- **Frontmatter validation** -- required fields, character constraints, length limits, reserved words, first/second-person voice, XML tags, unknown fields
-- **Full name spec compliance** -- leading/trailing hyphen checks, consecutive hyphen checks, directory-name matching (required by VS Code or the skill silently fails to load)
-- **Description quality scoring** -- scores 0-100 across action verbs, trigger phrases, keyword density, specificity, and length. Agents use descriptions to decide whether to activate a skill. A bad description means the skill never fires
-- **File reference validation** -- checks that relative file references in the body actually exist on disk and that reference depth stays within one level of SKILL.md
-- **Progressive disclosure budget** -- validates the three-tier token budget (metadata ~100 tokens, body <5000 tokens, resources on demand) and flags bloat patterns like oversized code blocks, large tables, and embedded base64
-- **Cross-agent compatibility warnings** -- flags fields that only work in Claude Code (`model`, `disable-model-invocation`, `mode`, `hooks`), notes VS Code directory-name requirements, and marks fields with unverified behavior in Codex and Cursor
+- **Frontmatter validation** -- required fields, type checks, length limits, reserved words, first/second-person voice, XML tags, and unknown fields
+- **Name compliance** -- hyphen rules, consecutive-hyphen checks, and directory-name matching (VS Code silently drops skills that don't match)
+- **Description quality scoring** -- scores 0-100 on action verbs, trigger phrases, keyword density, and length; a weak description means agents never activate the skill
+- **File reference validation** -- verifies relative references exist on disk and stay within one level of the skill file
+- **Token budget checks** -- validates the three-tier budget (metadata ~100 tokens, body <5000 tokens, resources on demand) and flags oversized code blocks, tables, and embedded base64
+- **Cross-agent compatibility warnings** -- highlights Claude Code-only fields, VS Code directory requirements, and unverified behavior in Codex and Cursor
 - **CI-friendly** -- JSON output, deterministic exit codes, zero config
 
 ## Install
