@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: Varonis-Systems/agenteval@v0
+      - uses: YoavLax/agenteval@v0
         with:
           path: .github/skills/
 ```
@@ -120,7 +120,7 @@ That's it. Failures block the PR, diagnostics appear inline on the diff, and a s
 Strict VS Code mode with a description quality floor:
 
 ```yaml
-- uses: Varonis-Systems/agenteval@v0
+- uses: YoavLax/agenteval@v0
   with:
     path: skills/
     strict-vscode: true
@@ -130,7 +130,7 @@ Strict VS Code mode with a description quality floor:
 Use the JSON output in a downstream step:
 
 ```yaml
-- uses: Varonis-Systems/agenteval@v0
+- uses: YoavLax/agenteval@v0
   id: check
   with:
     path: SKILL.md
@@ -257,10 +257,6 @@ Rules marked **spec** are derived from the [agentskills.io specification](https:
 | `compat.claude-only` | info | spec | Field only works in Claude Code |
 | `compat.vscode-dirname` | info/error | spec | Name does not match parent directory (VS Code) |
 | `compat.unverified` | info | advisory | Field behavior unverified in Codex/Cursor |
-
-## Case Study
-
-**[The Skill That Silently Disappeared in VS Code](docs/case-study-silent-skill-failure.md)**: A deploy skill works in Claude Code but never loads in VS Code/Copilot. No error. No warning. It just isn't there. This walkthrough shows how `AgentEval` catches the name/directory mismatch that causes silent failures, with verified source links to the spec and VS Code documentation.
 
 ## Limitations
 
